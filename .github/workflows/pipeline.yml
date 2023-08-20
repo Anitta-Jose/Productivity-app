@@ -45,7 +45,7 @@ jobs:
         working-directory: ./client
         # Build image with tag rakeshpotnuru/productivity-app:client
         run: |
-          docker build -t rakeshpotnuru/productivity-app:client-${{github.run_number}} -t rakeshpotnuru/productivity-app:client-latest .
+          docker build -t anittajose/sprint-board:client-${{github.run_number}} -t anittajose/sprint-board:client-latest .
 
       # Build a Docker image for the server application
       - name: Build Server Docker Image
@@ -53,14 +53,14 @@ jobs:
           ./server
           # Build image with tag rakeshpotnuru/productivity-app:server
         run: |
-          docker build -t rakeshpotnuru/productivity-app:server-${{github.run_number}} -t rakeshpotnuru/productivity-app:server-latest .
+          docker build -t anittajose/sprint-board:server-${{github.run_number}} -t anittajose/sprint-board:server-latest .
 
       # Build a Docker image for the NGINX reverse proxy
       - name: Build NGINX Docker Image
         working-directory: ./nginx
         # Build image with tag rakeshpotnuru/productivity-app:nginx
         run: |
-          docker build -t rakeshpotnuru/productivity-app:nginx-${{github.run_number}} -t rakeshpotnuru/productivity-app:nginx-latest .
+          docker build -t anittajose/sprint-board:nginx-${{github.run_number}} -t anittajose/sprint-board:nginx-latest .
 
       # Log in to Docker Hub using credentials from repository secrets
       - name: Log in to Docker Hub
@@ -72,12 +72,12 @@ jobs:
       # Push the Docker images to Docker Hub
       - name: Push Docker Images to Docker Hub
         run: |
-          docker push rakeshpotnuru/productivity-app:client-${{github.run_number}}
-          docker push rakeshpotnuru/productivity-app:server-${{github.run_number}}
-          docker push rakeshpotnuru/productivity-app:nginx-${{github.run_number}}
-          docker push rakeshpotnuru/productivity-app:client-latest
-          docker push rakeshpotnuru/productivity-app:server-latest
-          docker push rakeshpotnuru/productivity-app:nginx-latest
+          docker push anittajose/sprint-board:client-${{github.run_number}}
+          docker push anittajose/sprint-board:server-${{github.run_number}}
+          docker push anittajose/sprint-board:nginx-${{github.run_number}}
+          docker push anittajose/sprint-board:client-latest
+          docker push anittajose/sprint-board:server-latest
+          docker push anittajose/sprint-board:nginx-latest
 
       # This is the step that is deploying the application to Elastic Beanstalk.
       - name: Deploy to Elastic Beanstalk
