@@ -3,6 +3,7 @@ import React from "react";
 import "./Login.css";
 
 const Login = () => {
+  const token = localStorage.getItem("token");
   /**
    * When the user submits the form, prevent the default action, grab the email and password from the
    * form, send a POST request to the backend with the email and password, and if the response is
@@ -12,6 +13,16 @@ const Login = () => {
     event.preventDefault();
     const { email, password } = event.target;
 console.log('Inside login click')
+const result = await fetch(
+  `${process.env.REACT_APP_BACKEND_URL}/activities`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+const dataactivities = await result.json();
+console.log('dataactivities',dataactivities)
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
       {
