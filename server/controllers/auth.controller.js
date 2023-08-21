@@ -14,7 +14,7 @@ const PASSWORD = process.env.PASSWORD;
 const login = (req, res) => {
   /* Destructuring the email and password from the request body. */
   const { email, password } = req.body;
-
+console.log('Inside controller')
   if (email === EMAIL && password === PASSWORD) {
     /* Creating a token. */
     console.log('Verified the details')

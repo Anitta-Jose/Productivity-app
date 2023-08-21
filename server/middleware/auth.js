@@ -22,7 +22,9 @@ const verifyToken = (req, res, next) => {
         msg: "A token is required for authentication",
       });
     }
-  
+    /* Verifying the token. */
+    const decoded = jwt.verify(token, process.env.TOKEN_KEY);
+    req.userData = decoded;
   } catch (err) {
     return res.status(401).json({
       statusCode: 401,
